@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d10">
+  <title>Pathfinder AI — Job Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/" aria-label="Pathfinder AI home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>pathfinder<span class="brand-ai">.ai</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="side-nav">
+        <a class="nav-item active" href="#overview"><span class="nav-icon">◈</span> Overview <span class="nav-pill">NEW</span></a>
+        <a class="nav-item" href="#matcher"><span class="nav-icon">⌕</span> Job matcher</a>
+        <a class="nav-item" href="#results"><span class="nav-icon">▤</span> Recommendations</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-status"><span class="status-dot"></span><span>Recommendation engine</span><strong>Ready</strong></div>
+        <div class="user-card">
+          <div class="avatar">PF</div>
+          <div class="user-copy"><strong>Personal workspace</strong><span>Local development</span></div>
+          <span class="more">···</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong>Overview</strong></div>
+        <div class="topbar-right"><span class="live-indicator"><i></i> SYSTEM ONLINE</span><div class="top-avatar">PF</div></div>
+      </header>
+
+      <div class="content" id="overview">
+        <section class="hero">
+          <div class="hero-grid"></div>
+          <div class="hero-content">
+            <div class="eyebrow"><span class="eyebrow-dot"></span> CAREER INTELLIGENCE PLATFORM <span class="eyebrow-line"></span> V 1.0</div>
+            <h1>Find the work<br>you're <span>built for.</span></h1>
+            <p class="hero-subtitle">A smarter way to discover your next opportunity. Match your skills with roles that move your career forward.</p>
+            <a href="#matcher" class="primary-button">Build my recommendations <span>↗</span></a>
+          </div>
+          <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+          <div class="hero-chip"><span class="chip-spark">✳</span><div><strong>AI-powered matching</strong><small>Skills · interests · opportunity</small></div></div>
+          <div class="hero-coordinate">CAREER / DISCOVERY<br>INDIA · ANYWHERE</div>
+        </section>
+
+        <section class="stats-grid" aria-label="Platform statistics">
+          <div class="stat-card"><div class="stat-top"><span>INDEXED ROLES</span><span class="stat-icon">▤</span></div><div class="stat-number" id="jobsStat">—</div><div class="stat-foot"><span class="tiny-dot"></span> Sample catalogue loaded</div></div>
+          <div class="stat-card"><div class="stat-top"><span>CAREER TRACKS</span><span class="stat-icon">⌘</span></div><div class="stat-number" id="categoriesStat">—</div><div class="stat-foot"><span class="tiny-dot"></span> Across key disciplines</div></div>
+          <div class="stat-card"><div class="stat-top"><span>SEARCH SESSIONS</span><span class="stat-icon">↗</span></div><div class="stat-number" id="searchesStat">—</div><div class="stat-foot"><span class="tiny-dot"></span> Searches saved locally</div></div>
+        </section>
+
+        <section class="matcher-section" id="matcher">
+          <div class="section-heading">
+            <div><div class="section-kicker">01 / PERSONALIZE</div><h2>Configure your profile</h2><p>Tell us what you bring to the table. We'll find roles that fit.</p></div>
+            <div class="private-note"><span>⌁</span> Your search runs on this app</div>
+          </div>
+          <form id="recommendForm" class="profile-panel">
+            <div class="panel-top"><div class="panel-symbol">✳</div><div><strong>Candidate profile</strong><span>PROFILE INPUT <i>•</i> REQUIRED FIELDS MARKED *</span></div><div class="panel-step">STEP 01 <span>/</span> 01</div></div>
+            <div class="form-grid">
+              <label class="field field-wide"><span class="field-label">CORE SKILLS <b>*</b></span><textarea id="skills" name="skills" rows="3" placeholder="e.g. Python, JavaScript, SQL, communication, data analysis" required></textarea><small>Separate skills with commas. Include tools, languages, and strengths.</small></label>
+              <label class="field"><span class="field-label">EDUCATION</span><select id="education" name="education"><option value="">Select your education</option><option>High School / 12th</option><option>Diploma</option><option>B.Tech / B.E.</option><option>B.Sc.</option><option>BCA</option><option>M.Tech / M.E.</option><option>MCA</option><option>Other degree</option></select></label>
+              <label class="field"><span class="field-label">PREFERRED LOCATION</span><div class="input-with-icon"><span>⌖</span><input id="location" name="location" placeholder="e.g. Indore, Bhopal, Remote"></div></label>
+            </div>
+            <div class="form-footer"><div class="model-note"><span class="model-badge">ML</span><span><strong>TF-IDF + cosine similarity</strong><small>Transparent baseline recommendation model</small></span></div><button type="submit" class="primary-button submit-button" id="submitButton">Analyze my profile <span>→</span></button></div>
+            <div id="formMessage" class="form-message" role="status"></div>
+          </form>
+        </section>
+
+        <section class="results-section" id="results">
+          <div class="section-heading results-heading"><div><div class="section-kicker">02 / DISCOVER</div><h2>Recommended opportunities</h2><p id="resultsSubtitle">Your personalized job matches will appear here.</p></div><div class="result-count" id="resultCount">AWAITING PROFILE</div></div>
+          <div id="resultsGrid" class="results-grid">
+            <div class="empty-state"><div class="empty-graphic"><span>✳</span><i></i><b></b></div><strong>Your next opportunity starts here.</strong><p>Enter your skills above to generate a ranked list of relevant roles.</p><span class="empty-caption">READY WHEN YOU ARE <span>↗</span></span></div>
+          </div>
+        </section>
+        <footer class="footer"><span>PATHFINDER.AI <span class="footer-dot">/</span> CAREER INTELLIGENCE</span><span>BUILT FOR THE NEXT STEP <span class="footer-star">✳</span></span></footer>
+      </div>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
