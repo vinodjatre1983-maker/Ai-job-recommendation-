@@ -55,9 +55,9 @@
         </section>
 
         <section class="stats-grid" aria-label="Platform statistics">
-          <div class="stat-card"><div class="stat-top"><span>INDEXED ROLES</span><span class="stat-icon">▤</span></div><div class="stat-number" id="jobsStat">—</div><div class="stat-foot"><span class="tiny-dot"></span> Sample catalogue loaded</div></div>
-          <div class="stat-card"><div class="stat-top"><span>CAREER TRACKS</span><span class="stat-icon">⌘</span></div><div class="stat-number" id="categoriesStat">—</div><div class="stat-foot"><span class="tiny-dot"></span> Across key disciplines</div></div>
-          <div class="stat-card"><div class="stat-top"><span>SEARCH SESSIONS</span><span class="stat-icon">↗</span></div><div class="stat-number" id="searchesStat">—</div><div class="stat-foot"><span class="tiny-dot"></span> Searches saved locally</div></div>
+          <div class="stat-card"><div class="stat-top"><span>INDEXED ROLES</span><span class="stat-icon">▤</span></div><div class="stat-number" id="jobsStat">—</div><div class="stat-foot"><span class="stat-trend up">+12%</span><small>vs last month</small></div></div>
+          <div class="stat-card"><div class="stat-top"><span>CAREER TRACKS</span><span class="stat-icon">⌘</span></div><div class="stat-number" id="categoriesStat">—</div><div class="stat-foot"><span class="stat-trend up">+4</span><small>new pathways</small></div></div>
+          <div class="stat-card"><div class="stat-top"><span>SEARCH SESSIONS</span><span class="stat-icon">↗</span></div><div class="stat-number" id="searchesStat">—</div><div class="stat-foot"><span class="stat-trend up">+18%</span><small>active users</small></div></div>
         </section>
 
         <section class="matcher-section" id="matcher">
@@ -66,21 +66,24 @@
             <div class="private-note"><span>⌁</span> Your search runs on this app</div>
           </div>
           <form id="recommendForm" class="profile-panel">
-            <div class="panel-top"><div class="panel-symbol">✳</div><div><strong>Candidate profile</strong><span>PROFILE INPUT <i>•</i> REQUIRED FIELDS MARKED *</span></div><div class="panel-step">STEP 01 <span>/</span> 01</div></div>
+            <div class="panel-top"><div class="panel-symbol">✳</div><div><strong>Candidate profile</strong><span>PROFILE INPUT <i>•</i> REQUIRED FIELDS MARKED *</span></div><div class="panel-step">STEP 01</div></div>
             <div class="form-grid">
-              <label class="field field-wide"><span class="field-label">CORE SKILLS <b>*</b></span><textarea id="skills" name="skills" rows="3" placeholder="e.g. Python, JavaScript, SQL, communication, data analysis" required></textarea><small>Separate skills with commas. Include tools, languages, and strengths.</small></label>
-              <label class="field"><span class="field-label">EDUCATION</span><select id="education" name="education"><option value="">Select your education</option><option>High School / 12th</option><option>Diploma</option><option>B.Tech / B.E.</option><option>B.Sc.</option><option>BCA</option><option>M.Tech / M.E.</option><option>MCA</option><option>Other degree</option></select></label>
+              <label class="field field-wide"><span class="field-label">CORE SKILLS <b>*</b></span><textarea id="skills" name="skills" rows="3" placeholder="e.g. Python, JavaScript, SQL, communication"></textarea></label>
+              <label class="field"><span class="field-label">EDUCATION</span><select id="education" name="education"><option value="">Select your education</option><option>High School / 12th</option><option>Diploma</option><option>Bachelor's</option><option>Master's</option><option>PhD</option></select></label>
+              <label class="field"><span class="field-label">EXPERIENCE</span><select id="experience" name="experience"><option value="">Years of experience</option><option>0-1 years</option><option>1-3 years</option><option>3-5 years</option><option>5-8 years</option><option>8+ years</option></select></label>
               <label class="field"><span class="field-label">PREFERRED LOCATION</span><div class="input-with-icon"><span>⌖</span><input id="location" name="location" placeholder="e.g. Indore, Bhopal, Remote"></div></label>
+              <label class="field"><span class="field-label">WORK MODE</span><select id="workMode" name="workMode"><option value="">Select work mode</option><option>Remote</option><option>Hybrid</option><option>On-site</option></select></label>
+              <label class="field"><span class="field-label">CAREER GOAL</span><input id="careerGoal" name="careerGoal" placeholder="e.g. Product, data, engineering"></label>
             </div>
-            <div class="form-footer"><div class="model-note"><span class="model-badge">ML</span><span><strong>TF-IDF + cosine similarity</strong><small>Transparent baseline recommendation model</small></span></div><button type="submit" class="primary-button submit-button" id="submitButton">Analyze my profile <span>→</span></button></div>
+            <div class="form-footer"><div class="model-note"><span class="model-badge">ML</span><span><strong>TF-IDF + cosine similarity</strong><small>Transparent baseline recommendation model</small></span></div><button type="submit" class="submit-button">Find my matches</button></div>
             <div id="formMessage" class="form-message" role="status"></div>
           </form>
         </section>
 
         <section class="results-section" id="results">
-          <div class="section-heading results-heading"><div><div class="section-kicker">02 / DISCOVER</div><h2>Recommended opportunities</h2><p id="resultsSubtitle">Your personalized job matches will appear here.</p></div><div class="result-count" id="resultCount">AWAITING PROFILE</div></div>
+          <div class="section-heading results-heading"><div><div class="section-kicker">02 / DISCOVER</div><h2>Recommended opportunities</h2><p id="resultsSubtitle">Your personalized job matches will appear here.</p></div></div>
           <div id="resultsGrid" class="results-grid">
-            <div class="empty-state"><div class="empty-graphic"><span>✳</span><i></i><b></b></div><strong>Your next opportunity starts here.</strong><p>Enter your skills above to generate a ranked list of relevant roles.</p><span class="empty-caption">READY WHEN YOU ARE <span>↗</span></span></div>
+            <div class="empty-state"><div class="empty-graphic"><span>✳</span><i></i><b></b></div><strong>Your next opportunity starts here.</strong><p>Enter your skills above to generate a ranked list of opportunities.</p></div>
           </div>
         </section>
         <footer class="footer"><span>PATHFINDER.AI <span class="footer-dot">/</span> CAREER INTELLIGENCE</span><span>BUILT FOR THE NEXT STEP <span class="footer-star">✳</span></span></footer>
